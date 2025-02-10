@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerta de Peso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #imagen {
+            display: none;
+            width: 1000px;
+            height: 1000px;
+            transition: transform 1s;
+        }
+        .girar {
+            animation: girar 2s infinite linear;
+        }
+        @keyframes girar {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h2>Ingresa tu peso:</h2>
+    <input type="number" id="peso" placeholder="Ingresa tu peso">
+    <button onclick="verificarPeso()">Verificar</button>
+    <br><br>
+    <img id="imagen" src="alerta.jpg" alt="Alerta">
+    <audio id="sonido" src="alerta.mp3"></audio>
+
+    <script>
+        function verificarPeso() {
+            let peso = document.getElementById("peso").value;
+            let imagen = document.getElementById("imagen");
+            let sonido = document.getElementById("sonido");
+            
+            if (peso > 80) {
+                sonido.play();
+                imagen.style.display = "block";
+                imagen.classList.add("girar");
+            } else {
+                imagen.style.display = "none";
+                imagen.classList.remove("girar");
+            }
+        }
+    </script>
+</body>
+</html>
